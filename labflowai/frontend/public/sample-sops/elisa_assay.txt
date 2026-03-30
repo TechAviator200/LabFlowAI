@@ -1,0 +1,57 @@
+ELISA Assay Protocol — Human IL-6 Detection
+Version: 2.1
+Author: J. Martinez
+Date: 2024-11-15
+
+Objective:
+Quantify IL-6 concentration in cell culture supernatants using a sandwich ELISA. This protocol is suitable for serum, plasma, and conditioned media samples.
+
+Materials:
+- 96-well flat-bottom microplate (high-binding, Nunc MaxiSorp)
+- Capture antibody: anti-human IL-6 (R&D Systems, MAB206)
+- Detection antibody: biotinylated anti-human IL-6
+- Streptavidin-HRP conjugate
+- TMB substrate solution
+- Stop solution (2N H2SO4)
+- Wash buffer: PBS + 0.05% Tween-20
+- Blocking buffer: 1% BSA in PBS
+- IL-6 recombinant protein standard
+- Plate reader capable of reading 450 nm absorbance
+
+Protocol Steps:
+1. Coat plate: Dilute capture antibody to 4 µg/mL in PBS. Add 100 µL per well. Seal and incubate overnight at 4°C.
+
+2. Wash: Remove coating solution. Wash wells 3x with wash buffer. Pat dry on paper towel.
+
+3. Block: Add 300 µL blocking buffer per well. Incubate for 1 hour at room temperature.
+
+4. Wash: Wash wells 3x with wash buffer.
+
+5. Add samples and standards: Prepare 8-point standard curve starting from 2000 pg/mL with 2-fold serial dilutions. Add 100 µL sample or standard per well in duplicate. Seal and incubate for 2 hours at room temperature.
+
+6. Wash: Wash wells 5x with wash buffer.
+
+7. Add detection antibody: Dilute biotinylated detection antibody. Add 100 µL per well. Incubate for 1 hour at room temperature.
+
+8. Wash: Wash wells 5x with wash buffer.
+
+9. Add Streptavidin-HRP: Add 100 µL per well. Incubate for 20 minutes at room temperature, protected from light.
+
+10. Wash: Wash wells 5x with wash buffer.
+
+11. TMB substrate: Add 100 µL TMB per well. Incubate for approximately 20 minutes or until standard wells show visible color gradient. Do not allow over-development.
+
+12. Stop reaction: Add 50 µL stop solution per well. Absorbance should shift from blue to yellow.
+
+13. Read plate: Measure absorbance at 450 nm within 30 minutes of stopping reaction. Use 570 nm as reference wavelength if available.
+
+Expected Outputs:
+- OD450 readings for each well
+- Standard curve (4-parameter logistic fit)
+- Calculated IL-6 concentrations in pg/mL
+- Coefficient of variation (CV%) for duplicates
+
+Notes:
+- All reagents should be equilibrated to room temperature before use.
+- Avoid repeated freeze-thaw cycles for antibody stocks.
+- Samples with OD values outside the standard curve range should be diluted and re-run.

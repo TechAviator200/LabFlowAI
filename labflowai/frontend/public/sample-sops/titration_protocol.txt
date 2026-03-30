@@ -1,0 +1,54 @@
+Acid-Base Titration Protocol — Determination of Acetic Acid in Vinegar
+Course: Analytical Chemistry Lab
+Version: 3.0
+Date: 2025-02-20
+
+Objective:
+Determine the concentration of acetic acid in commercial vinegar using standardized NaOH solution. Calculate molarity and weight percentage of acetic acid.
+
+Safety:
+- Wear gloves and eye protection throughout.
+- NaOH is corrosive — handle with care.
+- Dispose of waste in labeled neutralization waste container.
+
+Reagents and Equipment:
+- Commercial white vinegar sample
+- Standardized NaOH solution (approximately 0.1 M — exact concentration from standardization)
+- Phenolphthalein indicator solution (1% in ethanol)
+- Distilled water
+- 50 mL burette (Class A, ±0.05 mL)
+- 250 mL Erlenmeyer flasks (x3)
+- 10 mL volumetric pipette
+- Magnetic stir plate and stir bar
+- Analytical balance
+
+Procedure:
+
+1. Burette preparation: Rinse burette with distilled water, then condition with 5 mL NaOH solution. Fill to above the 0.00 mL mark. Allow to drain to exactly 0.00 mL (or record initial volume). Remove air bubbles from tip.
+
+2. Sample preparation: Pipette exactly 10.00 mL of vinegar into a 250 mL Erlenmeyer flask. Add approximately 40 mL distilled water to dilute. Add 3 drops phenolphthalein indicator.
+
+3. Titration: Place flask on magnetic stir plate. Add NaOH from burette dropwise while stirring. As endpoint approaches, add NaOH drop by drop, swirling after each addition.
+
+4. Endpoint detection: Stop titration when a faint persistent pink color remains for at least 30 seconds. Record final burette reading.
+
+5. Calculation:
+   - Volume NaOH used = final reading − initial reading
+   - Moles NaOH = [NaOH] × volume (L)
+   - At equivalence point: moles CH3COOH = moles NaOH
+   - Molarity CH3COOH = moles / 0.010 L
+   - Weight % = (molarity × MW × 100) / (density × 1000)
+
+6. Repeat titration at least 3 times. Report mean and standard deviation of molarity.
+
+Expected Outputs:
+- Initial and final burette readings (mL) for each trial
+- Volume of NaOH used (mL) per trial
+- Calculated molarity of acetic acid (M)
+- Weight percentage of acetic acid (%)
+- Mean and standard deviation across trials
+- Comparison to labeled vinegar concentration (typically 5% w/v)
+
+Acceptance Criteria:
+- Triplicate results within ±0.2 mL of each other
+- Calculated % acetic acid within 4–6% for standard commercial vinegar

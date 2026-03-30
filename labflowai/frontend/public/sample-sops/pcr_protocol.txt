@@ -1,0 +1,65 @@
+RT-qPCR Gene Expression Protocol — SYBR Green Method
+Lab: Molecular Biology Core
+Version: 1.4
+Last Updated: 2025-01-08
+
+Purpose:
+Quantify relative mRNA expression using RT-qPCR with SYBR Green detection. Reference gene normalization (GAPDH or ACTB) is required for all expression data.
+
+Equipment:
+- Applied Biosystems QuantStudio 6 Flex Real-Time PCR System
+- MicroAmp optical 96-well plates
+- Thermal sealer
+- Micropipettes and filtered tips
+
+Reagents:
+- SYBR Green PCR Master Mix (2x) — Applied Biosystems 4309155
+- Forward and reverse primers (10 µM working stock)
+- RNase-free water
+- cDNA template (prepared from RNA extraction protocol SOP-RNA-001)
+
+RNA Extraction (separate SOP):
+Ensure RNA is of sufficient quality (RIN > 7, A260/280 > 1.8) before proceeding.
+
+cDNA Synthesis:
+Reverse transcribe 500 ng–1 µg total RNA using SuperScript IV VILO Master Mix per manufacturer instructions. Dilute cDNA 1:5 in RNase-free water before use in qPCR.
+
+qPCR Setup:
+1. Prepare master mix per reaction:
+   - 10 µL SYBR Green Master Mix (2x)
+   - 1 µL forward primer (10 µM)
+   - 1 µL reverse primer (10 µM)
+   - 7 µL cDNA + RNase-free water
+
+2. Dispense 20 µL total per well into 96-well optical plate.
+
+3. Add 2 µL cDNA template per well (from diluted stock).
+
+4. Include: no-template controls (NTC) and reference gene reactions on every plate.
+
+5. Seal plate tightly with optical adhesive film.
+
+Thermal Cycling Conditions:
+- Initial denaturation: 95°C for 10 minutes
+- 40 cycles:
+  - Denaturation: 95°C for 15 seconds
+  - Annealing/Extension: 60°C for 1 minute
+- Melt curve: 95°C 15s → 60°C 1 min → 95°C 15s (continuous)
+
+Data Analysis:
+- Use ΔΔCt method for relative quantification
+- Normalize to reference gene (GAPDH preferred)
+- Report fold-change relative to control condition
+- Verify single-peak melt curve for all amplicons
+
+Expected Outputs:
+- Ct values for each well
+- Melt curve data
+- Amplification efficiency per primer pair
+- Calculated ΔCt and ΔΔCt values
+- Fold-change expression data
+
+Acceptance Criteria:
+- NTC wells: no amplification (or Ct > 35)
+- Duplicate Ct values: CV < 5%
+- Melt curve: single peak (no secondary peaks)

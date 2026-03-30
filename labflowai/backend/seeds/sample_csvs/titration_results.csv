@@ -1,0 +1,9 @@
+trial,initial_burette_ml,final_burette_ml,volume_naoh_ml,naoh_concentration_M,moles_naoh,moles_acetic_acid,molarity_acetic_acid_M,weight_percent_acetic_acid,notes
+1,0.05,18.32,18.27,0.1023,0.001869,0.001869,0.1869,5.06,Endpoint: faint pink 30s
+2,0.10,18.45,18.35,0.1023,0.001878,0.001878,0.1878,5.08,Endpoint: faint pink 45s
+3,0.00,18.29,18.29,0.1023,0.001871,0.001871,0.1871,5.06,Endpoint: faint pink 30s
+mean,,,18.30,0.1023,0.001873,0.001873,0.1873,5.07,
+std_dev,,,0.031,,0.000005,0.000005,0.0005,0.01,
+cv_percent,,,0.17,,,,,0.20,Within acceptance criteria
+labeled_concentration,,,,,,,,,5.0% w/v per label
+percent_recovery,,,,,,,,,101.4%

@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Backend ──────────────────────────────────────────────────────────────────
+  backend:
+    name: Backend — lint + test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labflowai/backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: Lint (ruff)
+        run: ruff check app/ tests/ --select=E,F,W --ignore=E501
+
+      - name: Run tests
+        run: pytest tests/ -v --tb=short
+        env:
+          APP_ENV: test
+          DEMO_MODE: "true"
+          USE_MOCK_DB: "true"
+          # No LLM key → heuristic parser; no Supabase → mock DB
+          # Tests run entirely offline
+
+  # ── Frontend ─────────────────────────────────────────────────────────────────
+  frontend:
+    name: Frontend — build check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: labflowai/frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: labflowai/frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+
+  # ── Security ─────────────────────────────────────────────────────────────────
+  security:
+    name: Security scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install audit tools
+        run: pip install pip-audit bandit
+
+      - name: Python dependency CVE audit
+        run: pip-audit -r labflowai/backend/requirements.txt
+
+      - name: Static analysis (bandit)
+        run: bandit -r labflowai/backend/app -ll -q
+
+      - name: Check for committed secrets (Gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
