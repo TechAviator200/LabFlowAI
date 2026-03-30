@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(.venv/bin/python3.11 -m pytest tests/ -q --tb=short)"
-    ]
-  }
-}
