@@ -25,8 +25,9 @@ services:
         value: gpt-4o
       - key: SECRET_KEY
         generateValue: true
-      # Set these manually in the Render dashboard:
+      - key: CORS_ORIGINS
+        value: https://lab-flow-ai.vercel.app
+      # Set these manually in the Render dashboard if you want persistent storage / AI parsing:
       # SUPABASE_URL        → your Supabase project URL
       # SUPABASE_SERVICE_KEY → your Supabase service-role key
       # LLM_API_KEY         → your OpenAI / Anthropic key
-      # CORS_ORIGINS        → your Vercel frontend URL

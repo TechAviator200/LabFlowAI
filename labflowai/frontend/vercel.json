@@ -3,6 +3,9 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://labflow-ai-api.onrender.com"
+  },
   "headers": [
     {
       "source": "/(.*)",

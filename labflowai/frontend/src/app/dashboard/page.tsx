@@ -46,8 +46,7 @@ export default function DashboardPage() {
           <p className="font-semibold mb-1">Could not connect to backend.</p>
           <p className="text-red-600">{error}</p>
           <p className="mt-2 text-xs text-red-500">
-            Make sure the backend is running on port 8000.
-            See README for setup instructions.
+            Backend: {process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}
           </p>
         </div>
       )}
