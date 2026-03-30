@@ -4,10 +4,10 @@ Maps columns from an uploaded CSV against the workflow's OutputSchema.
 Returns a list of MappedOutput objects, flagging unrecognized or missing fields.
 """
 from __future__ import annotations
+import csv
 import io
 import uuid
 import re
-import pandas as pd
 
 from app.schemas import MappedOutput
 
@@ -20,9 +20,12 @@ def map_csv_outputs(
     """
     Parse CSV text, attempt column → schema field matching,
     and return run_output row dicts ready for DB insert.
+    Uses stdlib csv — no pandas dependency.
     """
     try:
-        df = pd.read_csv(io.StringIO(csv_text))
+        reader = csv.DictReader(io.StringIO(csv_text))
+        all_rows = list(reader)
+        columns = list(reader.fieldnames or [])
     except Exception as e:
         return [
             {
@@ -38,7 +41,10 @@ def map_csv_outputs(
         ]
 
     schema_fields = {s["field_name"].lower(): s for s in output_schema}
-    csv_columns = {c.lower(): c for c in df.columns}
+    csv_columns = {c.lower(): c for c in columns}
+
+    def col_values(real_col: str, limit: int = 50) -> list[str]:
+        return [r[real_col] for r in all_rows if r.get(real_col) not in (None, "")][:limit]
 
     rows = []
 
@@ -59,8 +65,7 @@ def map_csv_outputs(
             continue
 
         real_col = csv_columns[matched_col]
-        raw_values = df[real_col].dropna().tolist()
-        raw_str = "; ".join(str(v) for v in raw_values[:50])
+        raw_str = "; ".join(col_values(real_col, 50))
 
         normalized, unit, flagged, flag_reason = _normalize_value(
             raw_str, schema_entry.get("field_type", "string")
@@ -84,7 +89,7 @@ def map_csv_outputs(
                 "id": str(uuid.uuid4()),
                 "run_id": run_id,
                 "field_name": real_col,
-                "raw_value": "; ".join(str(v) for v in df[real_col].dropna().tolist()[:10]),
+                "raw_value": "; ".join(col_values(real_col, 10)),
                 "normalized_value": None,
                 "unit": None,
                 "flagged": True,
