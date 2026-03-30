@@ -31,7 +31,13 @@ def get_db():
         )
         _client = get_mock_db()
     else:
-        from supabase import create_client
+        try:
+            from supabase import create_client
+        except ImportError:
+            raise RuntimeError(
+                "SUPABASE_URL is set but the 'supabase' package is not installed. "
+                "Add 'supabase>=2.5.0' to requirements.txt or set USE_MOCK_DB=true."
+            )
         _client = create_client(settings.supabase_url, settings.supabase_service_key)
         logger.info("✅  Connected to Supabase at %s", settings.supabase_url)
 
