@@ -1,5 +1,4 @@
 services:
-  # ── Backend API ─────────────────────────────────────────────────────────────
   - type: web
     name: labflow-ai-api
     env: python
@@ -7,7 +6,7 @@ services:
     plan: free
     rootDir: labflowai/backend
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: APP_ENV
@@ -16,22 +15,18 @@ services:
         value: "true"
       - key: USE_MOCK_DB
         value: "false"
-      # ── Set these in the Render dashboard ──────────────────────────────────
-      - key: SUPABASE_URL
-        sync: false          # paste your Supabase project URL
-      - key: SUPABASE_SERVICE_KEY
-        sync: false          # paste your Supabase service-role key (server only)
       - key: SUPABASE_STORAGE_BUCKET
         value: labflow-uploads
       - key: LLM_PROVIDER
         value: openai
       - key: LLM_BASE_URL
         value: https://api.openai.com/v1
-      - key: LLM_API_KEY
-        sync: false          # paste your OpenAI / Anthropic API key
       - key: LLM_MODEL
         value: gpt-4o
       - key: SECRET_KEY
-        generateValue: true  # Render auto-generates a secure value
-      - key: CORS_ORIGINS
-        sync: false          # e.g. https://labflow-ai.vercel.app
+        generateValue: true
+      # Set these manually in the Render dashboard:
+      # SUPABASE_URL        → your Supabase project URL
+      # SUPABASE_SERVICE_KEY → your Supabase service-role key
+      # LLM_API_KEY         → your OpenAI / Anthropic key
+      # CORS_ORIGINS        → your Vercel frontend URL

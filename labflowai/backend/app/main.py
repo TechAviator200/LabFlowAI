@@ -17,6 +17,11 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    print("LabFlowAI backend starting...")
+    print(f"  env:        {settings.app_env}")
+    print(f"  demo_mode:  {settings.demo_mode}")
+    print(f"  db:         {'mock (in-memory)' if (not settings.supabase_url or settings.use_mock_db) else 'supabase'}")
+    print(f"  llm:        {'heuristic fallback' if not settings.llm_api_key else settings.llm_model}")
     if settings.demo_mode:
         _maybe_seed_demo()
     yield
